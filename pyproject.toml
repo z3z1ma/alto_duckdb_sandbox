@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "alto-duckdb-sandbox"
+version = "0.1.0"
+description = ""
+authors = ["z3z1ma <butler.alex2010@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "alto_duckdb_sandbox" }]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+dbt-core = "^1.4.4"
+dbt-duckdb = "^1.4.0"
+singer-alto = "^0.2.4"
+pyarrow = "^11.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,12 @@
+logs/
+target/
+dbt_packages/
+
+staging/
+
+.alto/
+_output/
+alto.secrets.*
+
+dbt.duckdb
+dbt.duckdb.wal

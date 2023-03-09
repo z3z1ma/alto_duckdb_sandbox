@@ -1,0 +1,35 @@
+# This file is used to configure Alto
+
+default:
+  load_path: raw
+  project_name: 1f88b02c
+  taps:
+    tap-asana:
+      pip_url: git+https://github.com/z3z1ma/tap-asana.git#egg=tap-asana
+      load_path: asana
+      capabilities: [catalog, state, about]
+      config:
+        client_id: "..."
+        redirect_uri: "urn:ietf:wg:oauth:2.0:oob"
+        refresh_token: "..."
+        start_date: "2021-01-01T00:00:00Z"
+        client_secret: "..."
+      select:
+        - "*.*"
+        # 👇 This use of the ~ prefix applies PII hashing
+        - "~*.email"
+        - "~*.name"
+    tap-carbon-intensity:
+      capabilities:
+        - state
+        - catalog
+      config: {}
+      load_path: carbon_intensity
+      pip_url: git+https://gitlab.com/meltano/tap-carbon-intensity.git#egg=tap_carbon_intensity
+      select:
+        - "*.*"
+  targets:
+    target-jsonl:
+      config:
+        destination_path: "@format output/{this.load_path}"
+      pip_url: target-jsonl==0.1.4

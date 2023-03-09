@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: asana__users__extract
+    description: "The users in your Asana workspace."
+    config:
+      target_name: "{{ target.name }}"
+      # 👇 This is the name of the stream in the tap
+      source_stream: "users"
+    columns:
+      - name: gid
+        description: "The globally unique identifier for the user."
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: |
+          The email address of the user. This field is hashed by alto.
+        tests:
+          # Ensure our PII hashing is working
+          - dbt_utils.expression_is_true:
+              expression: "not like '%@%'"

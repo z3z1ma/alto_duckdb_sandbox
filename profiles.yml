@@ -1,0 +1,11 @@
+alto:
+  outputs:
+    dev:
+      type: duckdb
+      path: staging/dbt_alto.db
+      extensions:
+        - httpfs
+        - parquet
+  target: dev
+config:
+  send_anonymous_usage_stats: False
