@@ -31,5 +31,5 @@ default:
   targets:
     target-jsonl:
       config:
-        destination_path: "@format output/{this.load_path}"
+        destination_path: "@format _output/{this.load_path}"
       pip_url: target-jsonl==0.1.4
